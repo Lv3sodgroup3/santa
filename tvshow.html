@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Add this inside your <style> tag or in style.css for best results */
+
+body {
+    background: #111;
+    color: #fff;
+    font-family: 'Montserrat', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.shows-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 30px;
+}
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+.section-header h2 {
+    font-size: 2rem;
+    margin: 0;
+    color: #fff;
+}
+.see-all {
+    color: #ff6b00;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+.see-all:hover {
+    color: #ff8c42;
+}
+.shows-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+.show-card {
+    background: #181818;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+.show-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 6px 24px rgba(255,107,0,0.15);
+}
+.show-poster {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    background: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.show-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-bottom: 2px solid #ff6b00;
+}
+.overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.55);
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s;
+}
+.show-card:hover .overlay {
+    opacity: 1;
+}
+.play-btn {
+    background: #ff6b00;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+    box-shadow: 0 2px 8px rgba(255,107,0,0.15);
+}
+.play-btn:hover {
+    background: #ff8c42;
+}
+.show-info {
+    display: flex;
+    gap: 15px;
+    color: #fff;
+    font-size: 1rem;
+}
+.rating i {
+    color: #ffd700;
+    margin-right: 3px;
+}
+.show-details {
+    padding: 18px 16px 16px 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.show-details h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.2rem;
+    color: #fff;
+    font-weight: 700;
+}
+.show-details p {
+    margin: 0 0 12px 0;
+    color: #bbb;
+    font-size: 1rem;
+}
+.season-selector {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.season-selector label {
+    font-size: 1rem;
+}
+.season-selector select {
+    background: #222;
+    color: #fff;
+    border: 1px solid #ff6b00;
+    border-radius: 5px;
+    padding: 6px 12px;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.2s;
+}
+.season-selector select:focus {
+    border: 1.5px solid #ff8c42;
+}
+#episodes-list ul {
+    margin: 0;
+    padding: 0;
+}
+#episodes-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    background: #232323;
+    border-radius: 6px;
+    padding: 6px 10px;
+    transition: background 0.2s;
+}
+#episodes-list li:hover {
+    background: #292929;
+}
+#episodes-list button {
+    background: #222;
+    color: #ff6b00;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 1rem;
+    transition: background 0.2s, color 0.2s;
+}
+#episodes-list button:hover {
+    background: #ff6b00;
+    color: #fff;
+}
+@media (max-width: 900px) {
+    .shows-section {
+        padding: 0 10px;
+    }
+    .shows-container {
+        gap: 18px;
+    }
+}
+@media (max-width: 576px) {
+    .shows-container {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 12px;
+    }
+    .show-poster {
+        height: 180px;
+    }
+    .show-details {
+        padding: 12px 8px 10px 8px;
+    }
+}
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    
+<!-- ...existing code above... -->
+<section class="shows-section">
+    <div class="section-header">
+        <h2>Popular TV Shows</h2>
+        <a href="#" class="see-all">See All</a>
+    </div>
+    <div class="shows-container">
+        <!-- TV Show Card with Seasons and Episodes -->
+        <div class="show-card" style="grid-column: span 2;">
+            <div class="show-poster">
+                <img src="image/game back.jpg" alt="The Lion's Reign">
+                <div class="overlay">
+                    <button class="play-btn"><i class="fas fa-play"></i></button>
+                    <div class="show-info">
+                        <span class="rating"><i class="fas fa-star"></i> 9.1</span>
+                        <span class="year">2024</span>
+                    </div>
+                </div>
+            </div>
+            <div class="show-details">
+                <h3>The Lion's Reign</h3>
+                <p>Drama, Adventure</p>
+                <div class="season-selector">
+                    <label for="season-select" style="color:#ff6b00;font-weight:600;">Season:</label>
+                    <select id="season-select" onchange="showEpisodes(this.value)">
+                        <option value="1">Season 1</option>
+                        <option value="2">Season 2</option>
+                    </select>
+                </div>
+                <div id="episodes-list">
+                    <!-- Episodes will be loaded here -->
+                </div>
+            </div>
+        </div>
+        <!-- ...other show cards... -->
+        <div class="show-card">
+            <div class="show-poster">
+                <img src="image/tvshow2.jpg" alt="Urban Legends">
+                <div class="overlay">
+                    <button class="play-btn"><i class="fas fa-play"></i></button>
+                    <div class="show-info">
+                        <span class="rating"><i class="fas fa-star"></i> 8.7</span>
+                        <span class="year">2023</span>
+                    </div>
+                </div>
+            </div>
+            <div class="show-details">
+                <h3>Urban Legends</h3>
+                <p>Thriller, Mystery</p>
+            </div>
+        </div>
+        <div class="show-card">
+            <div class="show-poster">
+                <img src="image/tvshow3" alt="Cosmic Quest">
+                <div class="overlay">
+                    <button class="play-btn"><i class="fas fa-play"></i></button>
+                    <div class="show-info">
+                        <span class="rating"><i class="fas fa-star"></i> 8.5</span>
+                        <span class="year">2022</span>
+                    </div>
+                </div>
+            </div>
+            <div class="show-details">
+                <h3>Cosmic Quest</h3>
+                <p>Sci-Fi, Adventure</p>
+            </div>
+        </div>
+        <div class="show-card">
+            <div class="show-poster">
+                <img src="image/tvshow4.jpg" alt="Family Ties">
+                <div class="overlay">
+                    <button class="play-btn"><i class="fas fa-play"></i></button>
+                    <div class="show-info">
+                        <span class="rating"><i class="fas fa-star"></i> 8.2</span>
+                        <span class="year">2023</span>
+                    </div>
+                </div>
+            </div>
+            <div class="show-details">
+                <h3>Family Ties</h3>
+                <p>Comedy, Family</p>
+            </div>
+        </div>
+    </div>
+</section>
+    
+</body>
+</html>
+<script>
+    // Example episodes data for "The Lion's Reign"
+    const episodes = {
+        1: [
+            { title: "Episode 1: The Awakening" },
+            { title: "Episode 2: Into the Wild" },
+            { title: "Episode 3: The Challenge" },
+            { title: "Episode 4: Shadows of the Past" }
+        ],
+        2: [
+            { title: "Episode 1: New Dawn" },
+            { title: "Episode 2: The Betrayal" },
+            { title: "Episode 3: The Return" }
+        ]
+    };
+
+    function showEpisodes(season) {
+        const list = document.getElementById('episodes-list');
+        list.innerHTML = '';
+        if (episodes[season]) {
+            const ul = document.createElement('ul');
+            ul.style.listStyle = "none";
+            ul.style.padding = "0";
+            episodes[season].forEach((ep, idx) => {
+                const li = document.createElement('li');
+                li.style.marginBottom = "8px";
+                li.innerHTML = `<button style="background:#222;color:#fff;border:none;padding:8px 16px;border-radius:5px;cursor:pointer;margin-right:8px;"><i class="fas fa-play"></i></button> ${ep.title}`;
+                ul.appendChild(li);
+            });
+            list.appendChild(ul);
+        }
+    }
+    // Show episodes for the default season on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        showEpisodes(1);
+    });
+</script>
+<!-- ...existing code below... -->

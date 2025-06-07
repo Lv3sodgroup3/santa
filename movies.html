@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simba Movies | Movies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: #111;
+            color: #fff;
+            font-family: 'Montserrat', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background: rgba(0,0,0,0.85);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-container img {
+            height: 40px;
+        }
+        .simba-animated-title {
+            display: inline-block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-left: 10px;
+            background: linear-gradient(90deg, #ff6b00, #ff8c42, #fff700, #ff6b00);
+            background-size: 200% auto;
+            color: #fff;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: simba-move 2s linear infinite;
+            vertical-align: middle;
+        }
+        @keyframes simba-move {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+        .nav-links ul {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a.active, .nav-links a:hover {
+            color: #ff6b00;
+        }
+        .nav-search {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .nav-search input {
+            padding: 7px 12px;
+            border-radius: 4px;
+            border: none;
+            outline: none;
+            background: #222;
+            color: #fff;
+        }
+        .nav-search button, .register-btn {
+            background: #ff6b00;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 7px 16px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .nav-search button:hover, .register-btn:hover {
+            background: #ff8c42;
+        }
+        .movies-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 30px;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+        .section-header h2 {
+            font-size: 2rem;
+            margin: 0;
+            color: #fff;
+        }
+        .see-all {
+            color: #ff6b00;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .see-all:hover {
+            color: #ff8c42;
+        }
+        .movies-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 25px;
+        }
+        .movie-card {
+            background: #181818;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+            transition: transform 0.2s;
+            position: relative;
+        }
+        .movie-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 6px 24px rgba(255,107,0,0.15);
+        }
+        .movie-poster {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            background: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .movie-poster img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.55);
+            opacity: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s;
+        }
+        .movie-card:hover .overlay {
+            opacity: 1;
+        }
+        .play-btn {
+            background: #ff6b00;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .play-btn:hover {
+            background: #ff8c42;
+        }
+        .movie-info {
+            display: flex;
+            gap: 15px;
+            color: #fff;
+            font-size: 1rem;
+        }
+        .rating i {
+            color: #ffd700;
+            margin-right: 3px;
+        }
+        .movie-details {
+            padding: 18px 16px 16px 16px;
+        }
+        .movie-details h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+        .movie-details p {
+            margin: 0;
+            color: #bbb;
+            font-size: 0.95rem;
+        }
+        /* Footer Styles */
+        .footer {
+            background-color: #0a0a0a;
+            padding: 60px 0 0;
+            color: #bbb;
+        }
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 30px;
+        }
+        .footer-logo img {
+            height: 40px;
+            margin-bottom: 20px;
+        }
+        .footer-logo p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.2s;
+            color: #fff;
+            font-size: 1.2rem;
+        }
+        .social-links a:hover {
+            background-color: #ff6b00;
+            color: #fff;
+        }
+        .links-column h4 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .links-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background-color: #ff6b00;
+        }
+        .links-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .links-column ul li {
+            margin-bottom: 10px;
+        }
+        .links-column ul a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.2s, padding-left 0.2s;
+        }
+        .links-column ul a:hover {
+            color: #ff6b00;
+            padding-left: 5px;
+        }
+        .footer-newsletter h4 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .footer-newsletter h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background-color: #ff6b00;
+        }
+        .footer-newsletter p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        .footer-newsletter form {
+            display: flex;
+        }
+        .footer-newsletter input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px 0 0 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        .footer-newsletter button {
+            background-color: #ff6b00;
+            color: #fff;
+            padding: 0 20px;
+            border-radius: 0 5px 5px 0;
+            font-weight: 600;
+            transition: background 0.2s;
+            border: none;
+        }
+        .footer-newsletter button:hover {
+            background-color: #ff8c42;
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            color: #bbb;
+            font-size: 0.95rem;
+        }
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            font-size: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .navbar-container, .footer-container, .footer-bottom, .movies-section {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+        @media (max-width: 576px) {
+            .movies-container {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            .movie-poster {
+                height: 200px;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container">
+                <img src="https://img.icons8.com/color/96/000000/lion--v2.png" alt="Simba Movies Logo">
+                <span class="simba-animated-title">Simba Movies</span>
+            </div>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="movies.html" class="active">Movies</a></li>
+                    <li><a href="tvshow.html">TV Shows</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="sub.html">Subscrption</a></li>
+                </ul>
+            </div>
+            <div class="nav-search">
+                <input type="text" placeholder="Search movies...">
+                <button><i class="fas fa-search"></i></button>
+               <a href="register.html"> <button class="register-btn">Register</button></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Movies Section: All Movies -->
+    <section class="movies-section">
+        <div class="section-header">
+            <h2>All Movies</h2>
+            <a href="#" class="see-all">See All</a>
+        </div>
+        <div class="movies-container">
+            <div class="movie-card">
+                <div class="movie-poster">
+                    <img src="image/viking.jpg" alt="Vikings">
+                    <div class="overlay">
+                        <button class="play-btn"><i class="fas fa-play"></i></button>
+                        <div class="movie-info">
+                            <span class="rating"><i class="fas fa-star"></i> 8.8</span>
+                            <span class="year">2024</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-details">
+                    <h3>Vikings</h3>
+                    <p>Action, Fantasy</p>
+                </div>
+            </div>
+            <div class="movie-card">
+                <div class="movie-poster">
+                    <img src="image/hitman.jpg" alt="Hitman">
+                    <div class="overlay">
+                        <button class="play-btn"><i class="fas fa-play"></i></button>
+                        <div class="movie-info">
+                            <span class="rating"><i class="fas fa-star"></i> 8.8</span>
+                            <span class="year">2024</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-details">
+                    <h3>Hitman</h3>
+                    <p>Action, Fantasy</p>
+                </div>
+            </div>
+            <div class="movie-card">
+                <div class="movie-poster">
+                    <img src="image/shadow.jpg" alt="Shadow Strays">
+                    <div class="overlay">
+                        <button class="play-btn"><i class="fas fa-play"></i></button>
+                        <div class="movie-info">
+                            <span class="rating"><i class="fas fa-star"></i> 8.8</span>
+                            <span class="year">2024</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-details">
+                    <h3>Shadow Strays</h3>
+                    <p>Action, Fantasy</p>
+                </div>
+            </div>
+            <div class="movie-card">
+                <div class="movie-poster">
+                    <img src="image/weekend.jpg" alt="Weekend Taipei">
+                    <div class="overlay">
+                        <button class="play-btn"><i class="fas fa-play"></i></button>
+                        <div class="movie-info">
+                            <span class="rating"><i class="fas fa-star"></i> 8.3</span>
+                            <span class="year">2023</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-details">
+                    <h3>Weekend Taipei</h3>
+                    <p>Sci-Fi, Adventure</p>
+                </div>
+            </div>
+            <div class="movie-card">
+                <div class="movie-poster">
+                    <img src="image/army.jpg" alt="Army of Thieves">
+                    <div class="overlay">
+                        <button class="play-btn"><i class="fas fa-play"></i></button>
+                        <div class="movie-info">
+                            <span class="rating"><i class="fas fa-star"></i> 7.9</span>
+                            <span class="year">2022</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-details">
+                    <h3>Army of Thieves</h3>
+                    <p>Thriller, Drama</p>
+                </div>
+            </div>
+            <div class="movie-card">
+                <div class="movie-poster">
+                    <img src="image/without.jpg" alt="Without Remorse">
+                    <div class="overlay">
+                        <button class="play-btn"><i class="fas fa-play"></i></button>
+                        <div class="movie-info">
+                            <span class="rating"><i class="fas fa-star"></i> 8.0</span>
+                            <span class="year">2023</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-details">
+                    <h3>Without Remorse</h3>
+                    <p>Adventure, Family</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Movies Section: Trending Now -->
+    <section class="movies-section">
+        <div class="section-header">
+            <h2>Trending Now</h2>
+            <a href="#" class="see-all">See All</a>
+        </div>
+        <div class="movies-container">
+            <div class="movie-card">
+                <div class="movie-poster">
+                    <img src="image/bullet.jpg" alt="Kingdom Reborn">
+                    <div class="overlay">
+                        <button class="play-btn"><i class="fas fa-play"></i></button>
+                        <div class="movie-info">
+                            <span class="rating"><i class="fas fa-star"></i> 8.9</span>
+                            <span class="year">2024</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-details">
+                    <h3>Kingdom Reborn</h3>
+                    <p>Action, Fantasy</p>
+                </div>
+            </div>
+            <div class="movie-card">
+                <div class="movie-poster">
+                    <img src="image/jackal.webp" alt="Lost in Space">
+                    <div class="overlay">
+                        <button class="play-btn"><i class="fas fa-play"></i></button>
+                        <div class="movie-info">
+                            <span class="rating"><i class="fas fa-star"></i> 8.3</span>
+                            <span class="year">2023</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-details">
+                    <h3>Lost in Space</h3>
+                    <p>Sci-Fi, Adventure</p>
+                </div>
+            </div>
+            <div class="movie-card">
+                <div class="movie-poster">
+                    <img src="image/outer.jpg" alt="Midnight City">
+                    <div class="overlay">
+                        <button class="play-btn"><i class="fas fa-play"></i></button>
+                        <div class="movie-info">
+                            <span class="rating"><i class="fas fa-star"></i> 7.9</span>
+                            <span class="year">2022</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-details">
+                    <h3>Midnight City</h3>
+                    <p>Thriller, Drama</p>
+                </div>
+            </div>
+            <div class="movie-card">
+                <div class="movie-poster">
+                    <img src="image/trend4.jpg" alt="Wild Escape">
+                    <div class="overlay">
+                        <button class="play-btn"><i class="fas fa-play"></i></button>
+                        <div class="movie-info">
+                            <span class="rating"><i class="fas fa-star"></i> 8.0</span>
+                            <span class="year">2023</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-details">
+                    <h3>Wild Escape</h3>
+                    <p>Adventure, Family</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="https://img.icons8.com/color/96/000000/lion--v2.png" alt="Simba Movies Logo">
+                <span class="simba-animated-title" style="font-size:1.3rem;">Simba Movies</span>
+                <p>Simba Movies is your premium destination for streaming the latest and greatest movies and TV shows. Enjoy unlimited entertainment, anytime, anywhere.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f" aria-label="Facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter" aria-label="Twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram" aria-label="Instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube" aria-label="YouTube"></i></a>
+                </div>
+            </div>
+            <div class="links-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="movies.html">Movies</a></li>
+                    <li><a href="#">TV Shows</a></li>
+                    <li><a href="#">Kids</a></li>
+                    <li><a href="#">My List</a></li>
+                </ul>
+            </div>
+            <div class="links-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Help Center</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Newsletter</h4>
+                <p>Subscribe to get the latest updates and offers.</p>
+                <form>
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2025 Simba Movies. All rights reserved.</span>
+            <div class="payment-methods">
+                <i class="fab fa-cc-visa" aria-label="Visa"></i>
+                <i class="fab fa-cc-mastercard" aria-label="Mastercard"></i>
+                <i class="fab fa-cc-paypal" aria-label="PayPal"></i>
+                <i class="fab fa-cc-amex" aria-label="American Express"></i>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Movie card hover effects
+        const movieCards = document.querySelectorAll('.movie-card');
+        movieCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const overlay = card.querySelector('.overlay');
+                if (overlay) overlay.style.opacity = '1';
+            });
+            card.addEventListener('mouseleave', () => {
+                const overlay = card.querySelector('.overlay');
+                if (overlay) overlay.style.opacity = '0';
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.querySelector('.nav-search input');
+        const searchButton = document.querySelector('.nav-search button');
+        searchButton.addEventListener('click', () => {
+            if (searchInput.value.trim() !== '') {
+                alert(`Searching for: ${searchInput.value}`);
+            }
+        });
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && searchInput.value.trim() !== '') {
+                alert(`Searching for: ${searchInput.value}`);
+            }
+        });
+
+        // Register button functionality
+        const registerBtn = document.querySelector('.register-btn');
+        registerBtn.addEventListener('click', () => {
+            alert('Redirecting to registration page...');
+        });
+
+        // Newsletter subscription
+        const newsletterForm = document.querySelector('.footer-newsletter form');
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const emailInput = newsletterForm.querySelector('input');
+            if (emailInput.value.trim() !== '') {
+                alert('Thank you for subscribing!');
+                emailInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>

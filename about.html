@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us | Simba Movies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: #111;
+            color: #fff;
+            font-family: 'Montserrat', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background: rgba(0,0,0,0.85);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-container img {
+            height: 40px;
+        }
+        .simba-animated-title {
+            display: inline-block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-left: 10px;
+            background: linear-gradient(90deg, #ff6b00, #ff8c42, #fff700, #ff6b00);
+            background-size: 200% auto;
+            color: #fff;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: simba-move 2s linear infinite;
+            vertical-align: middle;
+        }
+        @keyframes simba-move {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+        .nav-links ul {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a.active, .nav-links a:hover {
+            color: #ff6b00;
+        }
+        .about-section {
+            max-width: 900px;
+            margin: 50px auto 0 auto;
+            background: #181818;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+            padding: 40px 30px;
+        }
+        .about-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 18px;
+            color: #ff6b00;
+        }
+        .about-section h2 {
+            color: #fff;
+            margin-top: 35px;
+            margin-bottom: 12px;
+            font-size: 1.4rem;
+        }
+        .about-section p, .about-section li {
+            color: #bbb;
+            font-size: 1.08rem;
+            line-height: 1.7;
+        }
+        .about-section ul {
+            margin: 0 0 0 20px;
+            padding: 0;
+        }
+        .about-section .team {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+        .about-section .team-member {
+            background: #222;
+            border-radius: 10px;
+            padding: 18px 20px;
+            flex: 1 1 220px;
+            min-width: 200px;
+            text-align: center;
+        }
+        .about-section .team-member img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin-bottom: 12px;
+            object-fit: cover;
+            border: 2px solid #ff6b00;
+        }
+        .about-section .team-member h4 {
+            margin: 8px 0 4px 0;
+            color: #ff6b00;
+        }
+        .about-section .team-member p {
+            margin: 0;
+            font-size: 0.98rem;
+            color: #bbb;
+        }
+        @media (max-width: 600px) {
+            .about-section {
+                padding: 20px 8px;
+            }
+            .about-section .team {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container">
+                <img src="https://img.icons8.com/color/96/000000/lion--v2.png" alt="Simba Movies Logo">
+                <span class="simba-animated-title">Simba Movies</span>
+            </div>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="movies.html">Movies</a></li>
+                    <li><a href="tvshow.html">TV Shows</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="about.html" class="active">About Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <h1>About Simba Movies</h1>
+        <p>
+            <strong>Simba Movies</strong> is your premium destination for streaming the latest and greatest movies and TV shows. Our mission is to bring unlimited entertainment to your fingertips, anytime and anywhere. With a vast library of blockbusters, trending series, and family favorites, we strive to deliver a world-class viewing experience for everyone.
+        </p>
+        <h2>Our Vision</h2>
+        <p>
+            To be the most loved and trusted streaming platform, connecting people through stories and cinematic experiences that inspire, entertain, and unite.
+        </p>
+        <h2>What We Offer</h2>
+        <ul>
+            <li>Thousands of movies and TV shows across all genres</li>
+            <li>Curated collections and trending picks updated regularly</li>
+            <li>Family-friendly and kids’ content for all ages</li>
+            <li>Easy-to-use interface and personalized recommendations</li>
+            <li>Watch anywhere, anytime, on any device</li>
+            <li>Secure payment options and responsive support</li>
+        </ul>
+        <h2>Meet Our Team</h2>
+        <div class="team">
+            <div class="team-member">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Team Member">
+                <h4>Simba N.</h4>
+                <p>Founder & CEO</p>
+            </div>
+            <div class="team-member">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Team Member">
+                <h4>Alex K.</h4>
+                <p>Lead Developer</p>
+            </div>
+            <div class="team-member">
+                <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Team Member">
+                <h4>Chris M.</h4>
+                <p>Content Curator</p>
+            </div>
+            <div class="team-member">
+                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Team Member">
+                <h4>Jane D.</h4>
+                <p>Customer Support</p>
+            </div>
+        </div>
+        <h2>Contact Us</h2>
+        <p>
+            Have questions, feedback, or partnership inquiries? <br>
+            Email us at <a href="mailto:support@simbamovies.com" style="color:#ff6b00;">support@simbamovies.com</a> or visit our <a href="#" style="color:#ff6b00;">Help Center</a>.
+        </p>
+    </section>
+</body>
+</html>

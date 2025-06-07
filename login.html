@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register | Simba Movies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: #111;
+            color: #fff;
+            font-family: 'Montserrat', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background: rgba(0,0,0,0.85);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-container img {
+            height: 40px;
+        }
+        .simba-animated-title {
+            display: inline-block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-left: 10px;
+            background: linear-gradient(90deg, #ff6b00, #ff8c42, #fff700, #ff6b00);
+            background-size: 200% auto;
+            color: #fff;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: simba-move 2s linear infinite;
+            vertical-align: middle;
+        }
+        @keyframes simba-move {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+        .register-section {
+            max-width: 400px;
+            margin: 60px auto 0 auto;
+            background: #181818;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+            padding: 40px 30px 30px 30px;
+        }
+        .register-section h1 {
+            font-size: 2rem;
+            margin-bottom: 18px;
+            color: #ff6b00;
+            text-align: center;
+        }
+        .register-form label {
+            display: block;
+            margin-bottom: 6px;
+            color: #fff;
+            font-weight: 500;
+        }
+        .register-form input {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 18px;
+            border-radius: 5px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: #222;
+            color: #fff;
+            font-size: 1rem;
+        }
+        .register-form input:focus {
+            border: 1.5px solid #ff6b00;
+            outline: none;
+        }
+        .register-form button {
+            background: #ff6b00;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 12px 0;
+            width: 100%;
+            font-weight: 600;
+            font-size: 1.08rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .register-form button:hover {
+            background: #ff8c42;
+        }
+        .register-form .login-link {
+            display: block;
+            text-align: center;
+            margin-top: 16px;
+            color: #bbb;
+            font-size: 1rem;
+        }
+        .register-form .login-link a {
+            color: #ff6b00;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .register-form .login-link a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 600px) {
+            .register-section {
+                padding: 20px 8px;
+            }
+        }
+        /* Place this inside your <style> tag or style.css for improved nav styling */
+
+.navbar {
+    background: rgba(0,0,0,0.92);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-container img {
+    height: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(255,107,0,0.08);
+}
+
+.simba-animated-title {
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-left: 10px;
+    background: linear-gradient(90deg, #ff6b00, #ff8c42, #fff700, #ff6b00);
+    background-size: 200% auto;
+    color: #fff;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: simba-move 2s linear infinite;
+    vertical-align: middle;
+    letter-spacing: 1px;
+}
+
+@keyframes simba-move {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+.nav-links ul {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.08rem;
+    padding: 8px 18px;
+    border-radius: 22px;
+    transition: 
+        background 0.2s,
+        color 0.2s,
+        box-shadow 0.2s;
+    position: relative;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+    background: #ff6b00;
+    color: #fff;
+    box-shadow: 0 2px 12px rgba(255,107,0,0.15);
+}
+
+.nav-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-search input {
+    padding: 7px 12px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    background: #222;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.nav-search button, .register-btn {
+    background: #ff6b00;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 7px 16px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(255,107,0,0.08);
+}
+
+.nav-search button:hover, .register-btn:hover {
+    background: #ff8c42;
+}
+
+@media (max-width: 900px) {
+    .navbar-container {
+        padding: 0 10px;
+    }
+    .nav-links ul {
+        gap: 12px;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .nav-links ul {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .nav-links a {
+        padding: 8px 10px;
+        font-size: 1rem;
+    }
+    .nav-search {
+        width: 100%;
+        margin-top: 10px;
+        gap: 6px;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container">
+                <img src="https://img.icons8.com/color/96/000000/lion--v2.png" alt="Simba Movies Logo">
+                <span class="simba-animated-title">Simba Movies</span>
+            </div>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="movies.html">Movies</a></li>
+                    <li><a href="tvshow.html">TV Shows</a></li>
+                    <li><a href="#">Kids</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="sub.html">Subscribe</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Register Section -->
+    <section class="register-section">
+        <h1>Login</h1>
+        <form class="register-form" id="registerForm">
+          
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" minlength="6" required>
+
+            
+
+            <button type="submit">Login</button>
+            <div class="login-link">
+                Already have an account? <a href="register.html">Register</a>
+            </div>
+        </form>
+    </section>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const password = document.getElementById('password').value;
+            const confirm = document.getElementById('confirm-password').value;
+            if(password !== confirm) {
+                alert('Passwords do not match!');
+                return;
+            }
+            alert('Registration successful! Welcome to Simba Movies.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
